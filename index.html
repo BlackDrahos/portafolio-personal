@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matías Préstamo | Diseñador multimedia</title>
+    <meta name="description" content="Matías Préstamo — Diseñador multimedia especializado en motion graphics y edición de video.">
+    <meta name="theme-color" content="#05060a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <!-- Fondo: luz azul que sigue al mouse + grano -->
+    <div class="bg-fx" aria-hidden="true">
+        <div id="blob"></div>
+        <div id="blob-blur"></div>
+    </div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <nav class="nav">
+        <a href="#hero" class="logo">MP<span>.</span></a>
+        <div class="nav-links" id="nav-links">
+            <a href="#about">Sobre mí</a>
+            <a href="#works">Trabajos</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#experience">Experiencia</a>
+            <a href="#software">Software</a>
+            <a href="#contact">Contacto</a>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ============ BANNER SUPERIOR ============ -->
+    <header id="hero" class="hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+            <div class="hero-text">
+                <p class="eyebrow reveal" style="--i:0">
+                    Diseñador multimedia · Buenos Aires
+                </p>
+                <h1 class="title">
+                    <span class="line"><span class="word" style="--i:1">Matías</span></span>
+                    <span class="line"><span class="word serif" style="--i:2">Préstamo</span></span>
+                </h1>
+                <p class="description reveal" style="--i:3">
+                    Hago que las ideas se muevan. <strong>Motion graphics en After Effects</strong>,
+                    <strong>edición de video</strong> y piezas para redes con ritmo propio, potenciadas con <strong>IA</strong>.
+                </p>
+                <div class="hero-actions reveal" style="--i:4">
+                    <a href="#contact" class="btn btn-primary magnetic">
+                        Trabajemos juntos
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="https://behance.net/matiasprestamo" target="_blank" rel="noopener" class="btn btn-ghost magnetic">Ver Behance</a>
+                </div>
+            </div>
+
+            <!-- Retrato como composición de After Effects: se puede arrastrar el cabezal -->
+            <div class="comp reveal" style="--i:2" id="comp">
+                <div class="comp-card" id="comp-card">
+                    <div class="comp-stage">
+                        <div class="comp-view">
+                            <div class="comp-layers">
+                                <!-- Fondo animado -->
+                                <div class="comp-bg" aria-hidden="true">
+                                    <canvas class="liquid" id="liquid"></canvas>
+                                </div>
+                                <div class="comp-scan" aria-hidden="true"></div>
+                            </div>
+                            <div class="comp-shine" aria-hidden="true"></div>
+                        </div>
+                        <!-- El recorte es más alto que la card: la cabeza sobresale por arriba -->
+                        <div class="comp-figure">
+                            <img class="comp-photo" id="comp-photo" src="./img/matias.webp" alt="Retrato de Matías Préstamo" width="960" height="1200">
+                            <span class="comp-glint" aria-hidden="true"></span>
+                        </div>
+                        <div class="lower-third" aria-hidden="true">
+                            <span class="lt-name">Matías Préstamo</span>
+                            <span class="lt-role">Motion designer · Editor de video</span>
+                        </div>
+                    </div>
+
+                    <!-- Reproductor: se puede arrastrar para "editar" la intro -->
+                    <div class="player">
+                        <button class="tl-btn" id="tl-play" aria-label="Reproducir / pausar">
+                            <svg class="i-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M7 4v16l13-8z" fill="currentColor"/></svg>
+                            <svg class="i-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg>
+                        </button>
+                        <div class="scrub" id="tracks">
+                            <div class="track-lane">
+                                <span class="scrub-fill"></span>
+                                <i class="kf" style="--t:.15"></i><i class="kf" style="--t:.45"></i><i class="kf" style="--t:.6"></i><i class="kf" style="--t:.8"></i>
+                                <span class="playhead"></span>
+                            </div>
+                        </div>
+                        <span class="tl-time" id="tl-time">0:00</span>
+                    </div>
+
+                    <!-- Pistas de edición: clips de video, títulos, efectos y audio -->
+                    <div class="edit-tracks" id="edit-tracks" aria-hidden="true">
+                        <div class="et-row"><span class="clip c-title" style="--s:.04;--e:.32"></span><span class="clip c-fx" style="--s:.55;--e:.84"></span></div>
+                        <div class="et-row"><span class="clip c-video" style="--s:0;--e:.44"></span><span class="clip c-video c-video2" style="--s:.445;--e:1"></span></div>
+                        <div class="et-row et-audio"><span class="wave" id="wave"></span></div>
+                        <span class="et-dim"></span>
+                        <span class="et-playhead"></span>
+                    </div>
+
+                    <span class="chip chip-ae" aria-hidden="true"><b>Ae</b> Motion graphics</span>
+                    <span class="chip chip-pr" aria-hidden="true"><b>Pr</b> Edición de video</span>
+                    <span class="chip chip-ia" aria-hidden="true"><b>✦</b> Contenido con IA</span>
+                </div>
+                <p class="tl-hint">Arrastrá la línea de tiempo y editá la intro</p>
+                <div class="comp-shadow" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <a href="#about" class="scroll-hint" aria-label="Bajar">
+            <span class="mono">SCROLL</span>
+            <span class="scroll-line"></span>
+        </a>
+    </header>
+
+    <!-- Marquee de especialidades -->
+    <div class="marquee-wrap">
+    <div class="marquee" aria-hidden="true" data-sp>
+        <div class="marquee-inner">
+        <div class="marquee-track">
+            <span>Motion graphics</span><i>✦</i><span>After Effects</span><i>✦</i><span>Edición de video</span><i>✦</i><span>Redes sociales</span><i>✦</i><span>Render 3D</span><i>✦</i><span>Packaging</span><i>✦</i><span>IA generativa</span><i>✦</i>
+            <span>Motion graphics</span><i>✦</i><span>After Effects</span><i>✦</i><span>Edición de video</span><i>✦</i><span>Redes sociales</span><i>✦</i><span>Render 3D</span><i>✦</i><span>Packaging</span><i>✦</i><span>IA generativa</span><i>✦</i>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <main>
+        <!-- ============ SOBRE MÍ ============ -->
+        <section id="about" class="section">
+            <div class="section-head" data-sp>
+                <h2 class="section-title split">Sobre <em class="serif">mí</em></h2>
+            </div>
+            <div class="bento">
+                <article class="card spot bento-lead reveal" style="--i:0" data-sp>
+                    <p class="lead scrub-text">
+                        Soy diseñador multimedia con foco en <span class="accent">motion graphics</span> y
+                        <span class="accent">edición de video</span>. Me apasionan las nuevas tecnologías, las innovaciones
+                        y las tendencias — y convertirlas en piezas que se mueven. Hoy sumo <span class="accent">IA generativa</span>
+                        a mi flujo para idear más rápido y llegar más lejos.
+                    </p>
+                </article>
+                <article class="card spot stat reveal" style="--i:1" data-sp data-speed="40">
+                    <span class="stat-num"><span data-count="8">0</span>+</span>
+                    <span class="stat-label">años diseñando</span>
+                </article>
+                <article class="card spot stat reveal" style="--i:2" data-sp data-speed="-30">
+                    <span class="stat-num"><span data-count="3">0</span></span>
+                    <span class="stat-label">estudios y empresas</span>
+                </article>
+                <article class="card spot stat reveal" style="--i:3" data-sp data-speed="60">
+                    <span class="stat-num"><span data-count="6">0</span></span>
+                    <span class="stat-label">herramientas pro</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============ TRABAJOS (se cargan desde works.json / Behance) ============ -->
+        <section id="works" class="section">
+            <div class="section-head works-head" data-sp>
+                <h2 class="section-title split">Trabajos <em class="serif">seleccionados</em></h2>
+                <a href="https://behance.net/matiasprestamo" target="_blank" rel="noopener" class="works-all">Ver todo en Behance ↗</a>
+            </div>
+            <!-- Caso destacado: se ubica en la grilla después del trabajo N (data-after). Para sumar otro, copiar este bloque con data-after="12" -->
+            <article class="feature reveal" id="caso-validador" data-after="6" data-sp>
+                <div class="feature-info">
+                    <span class="feature-tag">Proyecto destacado · UI + Motion</span>
+                    <h3>Rediseño UI y maquetación para validador de pagos de <em class="serif">transporte público</em></h3>
+                    <p>Modernización visual y estructuración del sistema de pantallas para validadores integrados de transporte. Optimización de la jerarquía de información, claridad gráfica y flujo de estados para mejorar la experiencia del usuario en transacciones rápidas.</p>
+                </div>
+
+                <div class="feature-stage">
+                    <div class="device">
+                        <img src="./img/sube/validadora.webp" alt="Validador de pagos con la nueva interfaz" width="720" height="1280" loading="lazy">
+                        <div class="device-screen" aria-hidden="true">
+                            <video class="scr scr-idle" src="./img/sube/reposo.mp4" muted playsinline preload="auto"></video>
+                            <video class="scr scr-msg" src="./img/sube/mensajes.mp4" muted loop playsinline preload="auto"></video>
+                            <span class="screen-glare"></span>
+                        </div>
+                    </div>
+                    <span class="stage-floor" aria-hidden="true"></span>
+
+                    <!-- Pantallas de mensajes a la altura del display, como en la presentación -->
+                    <div class="states">
+                        <figure class="st st-l2" style="--k:1; --dot:#22c55e"><video src="./img/sube/aprobado.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video><figcaption>Pago aprobado</figcaption></figure>
+                        <figure class="st st-l1" style="--k:0; --dot:#1f6bff"><video src="./img/sube/espera.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video><figcaption>En proceso</figcaption></figure>
+                        <figure class="st st-r1" style="--k:0; --dot:#facc15"><video src="./img/sube/error.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video><figcaption>Error</figcaption></figure>
+                        <figure class="st st-r2" style="--k:1; --dot:#ef4444"><video src="./img/sube/rechazado.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video><figcaption>Rechazado</figcaption></figure>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Caso destacado con scroll: manual de uso del dispositivo -->
+            <article class="feature feature-pk feature-mn" id="caso-manual" data-after="12">
+                <div class="pk-track">
+                    <div class="pk-sticky">
+                        <div class="pk-info">
+                            <span class="feature-tag">Packaging · Manual de uso rápido</span>
+                            <h3>Manual incluido en la <em class="serif">caja</em></h3>
+                            <p>Pieza editorial incluida en el packaging. Render 3D del manual de uso rápido de Maquinola: guía visual para la puesta en marcha del dispositivo, pensada para ser clara e inmediata.</p>
+                            <ol class="pk-steps">
+                                <li data-from="0"><span>01</span> Manual cerrado</li>
+                                <li data-from="0.35"><span>02</span> Desplegado</li>
+                                <li data-from="0.7"><span>03</span> Contenido</li>
+                            </ol>
+                            <span class="pk-hint">Seguí bajando para desplegar el manual</span>
+                        </div>
+                        <div class="pk-stage">
+                            <span class="pk-glow mn-glow" aria-hidden="true"></span>
+                            <canvas class="pk-canvas mn-canvas" width="820" height="1000" role="img" aria-label="Render 3D del manual de uso desplegándose"></canvas>
+                            <span class="pk-floor" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Caso destacado con scroll: la sección queda fija y el scroll recorre los 70 cuadros del render -->
+            <article class="feature feature-pk" id="caso-packaging" data-after="12">
+                <div class="pk-track">
+                    <div class="pk-sticky">
+                        <div class="pk-info">
+                            <span class="feature-tag">Proyecto destacado · Packaging + 3D</span>
+                            <h3>Packaging para dispositivo de <em class="serif">pagos</em></h3>
+                            <p>Diseño de packaging y render 3D para el lanzamiento de una terminal de cobro. Sistema gráfico de caja, interior y presentación del producto, pensado para una experiencia de apertura clara y memorable.</p>
+                            <ol class="pk-steps">
+                                <li data-from="0"><span>01</span> Caja cerrada</li>
+                                <li data-from="0.35"><span>02</span> Apertura</li>
+                                <li data-from="0.7"><span>03</span> Producto</li>
+                            </ol>
+                            <span class="pk-hint">Seguí bajando para abrir la caja</span>
+                        </div>
+                        <div class="pk-stage">
+                            <span class="pk-glow" aria-hidden="true"></span>
+                            <canvas class="pk-canvas" width="820" height="1000" role="img" aria-label="Render 3D de la caja abriéndose y mostrando el dispositivo de pagos"></canvas>
+                            <span class="pk-floor" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <div class="works-grid" id="works-grid"></div>
+        </section>
+
+        <!-- ============ PROYECTOS PROPIOS ============ -->
+        <section id="projects" class="section">
+            <div class="section-head" data-sp>
+                <h2 class="section-title split">Proyectos <em class="serif">propios</em></h2>
+            </div>
+            <p class="section-sub reveal">Marcas y productos que ideé, diseñé y llevo adelante: de la identidad visual al producto digital.</p>
+
+            <div class="ventures">
+                <!-- Plendido -->
+                <article class="venture venture-lg card spot reveal" style="--vc:#f08a4b">
+                    <a class="browser" href="https://plendido.com.ar" target="_blank" rel="noopener" aria-label="Visitar plendido.com.ar">
+                        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>plendido.com.ar</span></div>
+                        <div class="browser-view"><img src="./img/proyectos/plendido.webp" alt="Sitio web de Plendido" width="1200" height="3000" loading="lazy"></div>
+                    </a>
+                    <div class="venture-info">
+                        <span class="venture-kicker">Marca propia · E-commerce</span>
+                        <h3>Plendido</h3>
+                        <p class="venture-slogan">“Diseño que se enciende.”</p>
+                        <p>Estudio de lámparas y objetos de diseño. Creé la marca de punta a punta: identidad visual, tienda online, fotografía de producto y contenido para redes.</p>
+                        <ul class="tags"><li>Branding</li><li>E-commerce</li><li>Fotografía de producto</li><li>Reels</li></ul>
+                        <div class="venture-boards">
+                            <img src="./img/proyectos/plendido-board-1.webp" alt="Lámina de marca de Plendido: paleta, materiales y estilo" width="1400" height="792" loading="lazy">
+                            <img src="./img/proyectos/plendido-board-2.webp" alt="Moodboard de Plendido" width="1400" height="792" loading="lazy">
+                        </div>
+                        <a class="venture-link" href="https://plendido.com.ar" target="_blank" rel="noopener">Visitar plendido.com.ar <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+
+                <!-- DinerAR -->
+                <article class="venture card spot reveal" style="--vc:#3b82f6; --i:1">
+                    <a class="browser" href="https://dinerar.vercel.app" target="_blank" rel="noopener" aria-label="Visitar DinerAR">
+                        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>dinerar.vercel.app</span></div>
+                        <div class="browser-view"><img src="./img/proyectos/dinerar.webp" alt="Sitio web de DinerAR" width="1200" height="1375" loading="lazy"></div>
+                    </a>
+                    <div class="venture-info">
+                        <span class="venture-kicker">Producto propio · Finanzas</span>
+                        <h3>DinerAR</h3>
+                        <p>Una bitácora financiera que nació de una necesidad propia: centralizar inversiones de distintas plataformas, con cotizaciones en vivo y calculadoras de UVA, MEP e interés compuesto.</p>
+                        <ul class="tags"><li>Producto</li><li>UI/UX</li><li>Desarrollo web</li><li>Datos en vivo</li></ul>
+                        <a class="venture-link" href="https://dinerar.vercel.app" target="_blank" rel="noopener">Visitar DinerAR <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+
+                <!-- Reservate -->
+                <article class="venture card spot reveal" style="--vc:#10b981; --i:2">
+                    <a class="browser" href="https://reservate.com.ar" target="_blank" rel="noopener" aria-label="Visitar reservate.com.ar">
+                        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>reservate.com.ar</span></div>
+                        <div class="browser-view"><img src="./img/proyectos/reservate.webp" alt="Sitio web de Reservate" width="1200" height="3000" loading="lazy"></div>
+                    </a>
+                    <div class="venture-info">
+                        <span class="venture-kicker">SaaS propio · Clubes deportivos</span>
+                        <h3><img src="./img/proyectos/reservate-logo.webp" alt="" width="128" height="128"> Reservate</h3>
+                        <p>Plataforma para clubes deportivos: reservas de canchas online, agenda ordenada, pagos y control de caja en un solo lugar.</p>
+                        <ul class="tags"><li>SaaS</li><li>UI/UX</li><li>Producto</li><li>Desarrollo web</li></ul>
+                        <a class="venture-link" href="https://reservate.com.ar" target="_blank" rel="noopener">Visitar reservate.com.ar <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============ EXPERIENCIA ============ -->
+        <section id="experience" class="section">
+            <div class="section-head" data-sp>
+                <h2 class="section-title split">Experiencia y <em class="serif">educación</em></h2>
+            </div>
+
+            <div class="grid-2">
+                <div class="card spot timeline reveal" style="--i:0">
+                    <h3 class="card-title">Experiencia</h3>
+                    <ol class="tl" data-sp>
+                        <li class="tl-item">
+                            <span class="tl-dot"></span>
+                            <div class="tl-top">
+                                <h4>Nación Servicios</h4>
+                                <span class="date">2021 — hoy</span>
+                            </div>
+                            <p class="role">Diseñador multimedia</p>
+                            <ul class="tags"><li>Motion graphics</li><li>Redes sociales</li><li>Edición de video</li><li>Render 3D</li><li>Packaging</li></ul>
+                        </li>
+                        <li class="tl-item">
+                            <span class="tl-dot"></span>
+                            <div class="tl-top">
+                                <h4>EnPixeles Freelancer</h4>
+                                <span class="date">2020 — hoy</span>
+                            </div>
+                            <p class="role">Diseñador · Maquetador</p>
+                            <ul class="tags"><li>Motion graphics</li><li>Edición de video</li><li>E-commerce</li><li>Render 3D</li><li>Webs corporativas</li></ul>
+                        </li>
+                        <li class="tl-item">
+                            <span class="tl-dot"></span>
+                            <div class="tl-top">
+                                <h4>Omnigraphics Argentina</h4>
+                                <span class="date">2018 — 2021</span>
+                            </div>
+                            <p class="role">Diseñador · Administrativo</p>
+                            <ul class="tags"><li>Diseño 3D de producto</li><li>Motion graphics</li><li>Edición de video</li></ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="card spot timeline reveal" style="--i:1">
+                    <h3 class="card-title">Educación</h3>
+                    <ol class="edu">
+                        <li><h4>Diseño multimedial</h4><span>Escuela Da Vinci</span></li>
+                        <li><h4>Diseño 3D en Blender</h4><span>Coderhouse</span></li>
+                        <li><h4>Creación de contenido con AI</h4><span>Coderhouse</span></li>
+                        <li><h4>Diseñador UX/UI</h4><span>Codo a Codo</span></li>
+                        <li><h4>Marketing digital</h4><span>Google Activate</span></li>
+                        <li><h4>Técnico en desarrollo informático</h4><span>IAC</span></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SOFTWARE ============ -->
+        <section id="software" class="section">
+            <div class="section-head" data-sp>
+                <h2 class="section-title split">Caja de <em class="serif">herramientas</em></h2>
+            </div>
+            <div class="software-grid">
+                <div class="card spot tilt sw reveal" style="--i:0; --c:#9999ff"><span class="sw-name">Ae</span><p>After Effects</p></div>
+                <div class="card spot tilt sw reveal" style="--i:1; --c:#ea77ff"><span class="sw-name">Pr</span><p>Premiere</p></div>
+                <div class="card spot tilt sw reveal" style="--i:2; --c:#ff9a00"><span class="sw-name">Ai</span><p>Illustrator</p></div>
+                <div class="card spot tilt sw reveal" style="--i:3; --c:#31a8ff"><span class="sw-name">Ps</span><p>Photoshop</p></div>
+                <div class="card spot tilt sw reveal" style="--i:4; --c:#a259ff"><span class="sw-name sw-logo"><img src="./img/logos/figma.svg" alt="" width="38" height="57"></span><p>Figma</p></div>
+                <div class="card spot tilt sw reveal" style="--i:5; --c:#e87d0d"><span class="sw-name sw-logo"><img src="./img/logos/blender.svg" alt="" width="181" height="148"></span><p>Blender</p></div>
+            </div>
+            <div class="card spot ai-card reveal">
+                <div class="ai-head">
+                    <span class="ai-icon" aria-hidden="true">✦</span>
+                    <div>
+                        <h3>IA en mi flujo de trabajo</h3>
+                        <p>Uso herramientas de IA generativa para explorar ideas, generar recursos y acelerar la producción, sin perder el criterio de diseño.</p>
+                    </div>
+                </div>
+                <ul class="tags ai-tags"><li><img src="./img/logos/ai-claude.svg" alt="" width="14" height="14">Claude</li><li><img src="./img/logos/ai-chatgpt.svg" alt="" width="14" height="14">ChatGPT</li><li><img src="./img/logos/ai-gemini.svg" alt="" width="14" height="14">Gemini</li><li><img src="./img/logos/ai-veo.svg" alt="" width="14" height="14">Veo</li><li><img src="./img/logos/ai-magnific.svg" alt="" width="14" height="14">Magnific Spaces</li></ul>
+            </div>
+        </section>
+
+        <!-- ============ CONTACTO ============ -->
+        <section id="contact" class="section">
+            <div class="card spot contact reveal" data-sp>
+                <span class="mono">¿Tenés un proyecto?</span>
+                <h2 class="contact-title">Hagamos algo<br><em class="serif">que se mueva.</em></h2>
+                <a href="mailto:prestamomatias@gmail.com" class="btn btn-primary btn-xl magnetic">
+                    prestamomatias@gmail.com
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="label">Portafolio</span>
+                        <a href="https://behance.net/matiasprestamo" target="_blank" rel="noopener" class="value">behance.net/matiasprestamo ↗</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="label">Idioma</span>
+                        <span class="value">Inglés · Básico</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span class="mono">MOTION GRAPHICS · EDICIÓN DE VIDEO · 3D</span>
+        <a href="#hero" class="mono to-top">VOLVER ARRIBA ↑</a>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

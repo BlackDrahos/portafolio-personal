@@ -1,0 +1,19 @@
+{
+  "name": "portafolio-matias-prestamo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predev": "node scripts/behance.mjs",
+    "prebuild": "node scripts/behance.mjs"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "lenis": "^1.3.26"
+  }
+}
