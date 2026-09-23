@@ -729,5 +729,29 @@ initTypewriterTitle();
     }
 }
 
+// ============ Selector de tema (Claro / Oscuro) con persistencia ============
+{
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+    htmlEl.setAttribute('data-theme', savedTheme);
+
+    const updateTheme = theme => {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio-theme', theme);
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.content = theme === 'light' ? '#f5f7fc' : '#05060a';
+    };
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const current = htmlEl.getAttribute('data-theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            updateTheme(next);
+        });
+    }
+}
+
 
 
