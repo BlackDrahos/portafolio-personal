@@ -182,8 +182,8 @@ function render(p) {
     s.setProperty('--gs', easeInOut(clamp((p - 0.5) / 0.25)));
     s.setProperty('--lt', seg(p, 0.55, 0.72));
     s.setProperty('--lt2', seg(p, 0.62, 0.8));
-    // Chips: entran uno tras otro (tuc, tuc, tuc) con un pequeño rebote
-    [0.3, 0.38, 0.46].forEach((start, i) => s.setProperty(`--chip${i + 1}`, easeOutBack(clamp((p - start) / 0.12))));
+    // Chips: entran uno tras otro (tuc, tuc, tuc) con un pequeño rebote, después de la foto
+    [0.58, 0.68, 0.78].forEach((start, i) => s.setProperty(`--chip${i + 1}`, easeOutBack(clamp((p - start) / 0.12))));
     s.setProperty('--p', p);
     tracks.style.setProperty('--p', p);
 
@@ -481,6 +481,33 @@ document.querySelectorAll('.feature').forEach(feature => {
     }, { threshold: 0.25 }).observe(feature);
 });
 
+// ============ Parallax 3D e Interacción hover para Validador SUBE ============
+{
+    const stage = document.querySelector('#caso-validador .feature-stage');
+    if (stage && !reduceMotion) {
+        const device = stage.querySelector('.device');
+        const glare = stage.querySelector('.screen-glare');
+
+        stage.addEventListener('pointermove', (e) => {
+            const rect = stage.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            if (device) {
+                device.style.transform = `perspective(1000px) rotateY(${x * 14}deg) rotateX(${-y * 12}deg) translateY(-8px) scale(1.02)`;
+            }
+            if (glare) {
+                glare.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            }
+        });
+
+        stage.addEventListener('pointerleave', () => {
+            if (device) device.style.transform = '';
+            if (glare) glare.style.transform = '';
+        });
+    }
+}
+
 // ============ Caso packaging: el scroll recorre la secuencia del render ============
 {
     const pk = document.getElementById('caso-packaging');
@@ -600,3 +627,107 @@ document.querySelectorAll('.feature').forEach(feature => {
         if (active && !was) requestAnimationFrame(tick);
     }).observe(track);
 }
+
+// ============ Efecto Máquina de Escribir (Hero Title: Matí Prestamo <-> Matí Presti) ============
+function initTypewriterTitle() {
+    const firstEl = document.getElementById('typewriter-first');
+    const lastEl = document.getElementById('typewriter-last');
+    const cursor = document.getElementById('title-cursor');
+    if (!firstEl || !lastEl || !cursor) return;
+
+    const firstName = "Matí";
+    const surnames = ["Prestamo", "Presti"];
+    let surnameIndex = 0;
+
+    firstEl.after(cursor);
+    firstEl.textContent = "";
+    lastEl.textContent = "";
+    cursor.classList.add('is-typing');
+
+    let i = 0;
+
+    function typeFirst() {
+        if (i < firstName.length) {
+            firstEl.textContent += firstName.charAt(i);
+            i++;
+            setTimeout(typeFirst, 100);
+        } else {
+            lastEl.after(cursor);
+            setTimeout(typeSurname, 200);
+        }
+    }
+
+    function typeSurname() {
+        cursor.classList.add('is-typing');
+        const targetText = surnames[surnameIndex];
+        let currentText = lastEl.textContent;
+
+        if (currentText.length < targetText.length) {
+            lastEl.textContent = targetText.substring(0, currentText.length + 1);
+            setTimeout(typeSurname, 90 + Math.random() * 30);
+        } else {
+            cursor.classList.remove('is-typing');
+            setTimeout(eraseSurname, 2600);
+        }
+    }
+
+    function eraseSurname() {
+        cursor.classList.add('is-typing');
+        let currentText = lastEl.textContent;
+
+        if (currentText.length > 0) {
+            lastEl.textContent = currentText.substring(0, currentText.length - 1);
+            setTimeout(eraseSurname, 60);
+        } else {
+            surnameIndex = (surnameIndex + 1) % surnames.length;
+            setTimeout(typeSurname, 200);
+        }
+    }
+
+    setTimeout(typeFirst, 300);
+}
+initTypewriterTitle();
+
+// ============ Rotación periódica de la card Figma <-> Adobe XD ============
+{
+    const flipCard = document.getElementById('sw-figma-xd');
+    if (flipCard) {
+        let flipped = false;
+        setInterval(() => {
+            flipped = !flipped;
+            flipCard.classList.toggle('is-flipped', flipped);
+        }, 3600);
+        flipCard.addEventListener('click', () => {
+            flipped = !flipped;
+            flipCard.classList.toggle('is-flipped', flipped);
+        });
+    }
+}
+
+// ============ Despliegue de Experiencia laboral protegida ============
+{
+    const expCard = document.getElementById('exp-card');
+    const btnReveal = document.getElementById('btn-reveal-exp');
+    const btnCollapse = document.getElementById('btn-collapse-exp');
+    const expBadge = document.getElementById('exp-badge');
+    const expContent = document.getElementById('exp-content');
+
+    if (expCard && btnReveal && btnCollapse) {
+        btnReveal.addEventListener('click', () => {
+            expCard.classList.add('is-revealed');
+            btnReveal.setAttribute('aria-expanded', 'true');
+            if (expContent) expContent.setAttribute('aria-hidden', 'false');
+            if (expBadge) expBadge.textContent = 'ACCESO ACTIVO';
+        });
+
+        btnCollapse.addEventListener('click', () => {
+            expCard.classList.remove('is-revealed');
+            btnReveal.setAttribute('aria-expanded', 'false');
+            if (expContent) expContent.setAttribute('aria-hidden', 'true');
+            if (expBadge) expBadge.textContent = 'PRIVADO';
+        });
+    }
+}
+
+
+

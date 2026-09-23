@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#05060a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Serif:ital,wght@0,400;1,400&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="./img/logo enpixeles.svg">
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -25,7 +25,6 @@
     <nav class="nav">
         <a href="#hero" class="logo" aria-label="Matías Préstamo Inicio">
             <img src="./img/logo enpixeles.svg" alt="Logo Matías Préstamo" class="logo-pixel-img">
-            <span>MP.</span>
         </a>
         <div class="nav-links" id="nav-links">
             <a href="#about">Sobre mí</a>
@@ -47,15 +46,17 @@
         <div class="hero-inner">
             <div class="hero-text">
                 <p class="eyebrow reveal" style="--i:0">
-                    Diseñador multimedia · Buenos Aires
+                    Diseñador multimedia · Buenos Aires · Argentina
                 </p>
                 <h1 class="title">
-                    <span class="line"><span class="word" style="--i:1">Matías</span></span>
-                    <span class="line"><span class="word serif" style="--i:2">Préstamo</span></span>
+                    <span class="line"><span class="word" id="typewriter-first"></span></span>
+                    <span class="line"><span class="word serif" id="typewriter-last"></span><span class="title-cursor" id="title-cursor" aria-hidden="true"></span></span>
                 </h1>
                 <p class="description reveal" style="--i:3">
-                    Hago que las ideas se muevan. <strong>Motion graphics en After Effects</strong>,
-                    <strong>edición de video</strong> y piezas para redes con ritmo propio, potenciadas con <strong>IA</strong>.
+                    Hago que las ideas se muevan.<br>
+                    <strong>Motion graphics en After Effects</strong>, <strong>edición de video</strong><br>
+                    y piezas para redes con ritmo propio<br>
+                    potenciadas con <strong>IA</strong>.
                 </p>
                 <div class="hero-actions reveal" style="--i:4">
                     <a href="#contact" class="btn btn-primary magnetic">
@@ -86,8 +87,11 @@
                             <span class="comp-glint" aria-hidden="true"></span>
                         </div>
                         <div class="lower-third" aria-hidden="true">
-                            <span class="lt-name">Matías Préstamo</span>
-                            <span class="lt-role">Motion designer · Editor de video</span>
+                            <div class="lt-chips">
+                                <span class="chip-mini chip-float-1" style="--cd:1"><b class="badge-ae">Ae</b> Motion graphics</span>
+                                <span class="chip-mini chip-float-2" style="--cd:2"><b class="badge-pr">Pr</b> Edición de video</span>
+                                <span class="chip-mini chip-float-3" style="--cd:3"><b class="badge-ia">✦</b> Contenido con IA</span>
+                            </div>
                         </div>
                     </div>
 
@@ -115,10 +119,6 @@
                         <span class="et-dim"></span>
                         <span class="et-playhead"></span>
                     </div>
-
-                    <span class="chip chip-ae" aria-hidden="true"><b>Ae</b> Motion graphics</span>
-                    <span class="chip chip-pr" aria-hidden="true"><b>Pr</b> Edición de video</span>
-                    <span class="chip chip-ia" aria-hidden="true"><b>✦</b> Contenido con IA</span>
                 </div>
                 <p class="tl-hint">Arrastrá la línea de tiempo y editá la intro</p>
                 <div class="comp-shadow" aria-hidden="true"></div>
@@ -152,10 +152,8 @@
             <div class="bento">
                 <article class="card spot bento-lead reveal" style="--i:0" data-sp>
                     <p class="lead scrub-text">
-                        Soy diseñador multimedia con foco en <span class="accent">motion graphics</span> y
-                        <span class="accent">edición de video</span>. Me apasionan las nuevas tecnologías, las innovaciones
-                        y las tendencias — y convertirlas en piezas que se mueven. Hoy sumo <span class="accent">IA generativa</span>
-                        a mi flujo para idear más rápido y llegar más lejos.
+                        Diseñador multimedia enfocado en <span class="accent">motion graphics</span> y
+                        <span class="accent">edición de video</span>. Me apasiona combinar creatividad, innovación y tendencias visuales para transformar ideas en piezas con movimiento propio. Integro <span class="accent">IA generativa</span> a mi flujo de trabajo para potenciar la exploración conceptual y optimizar los tiempos de producción.
                     </p>
                 </article>
                 <article class="card spot stat reveal" style="--i:1" data-sp data-speed="40">
@@ -259,30 +257,25 @@
             <div class="works-grid" id="works-grid"></div>
         </section>
 
-        <!-- ============ PROYECTOS PROPIOS ============ -->
+        <!-- ============ OTROS PROYECTOS ============ -->
         <section id="projects" class="section">
             <div class="section-head" data-sp>
-                <h2 class="section-title split">Proyectos <em class="serif">propios</em></h2>
+                <h2 class="section-title split">Otros <em class="serif">proyectos</em></h2>
             </div>
-            <p class="section-sub reveal">Marcas y productos que ideé, diseñé y llevo adelante: de la identidad visual al producto digital.</p>
 
             <div class="ventures">
                 <!-- Plendido -->
-                <article class="venture venture-lg card spot reveal" style="--vc:#f08a4b">
+                <article class="venture card spot reveal" style="--vc:#f08a4b; --i:0">
                     <a class="browser" href="https://plendido.com.ar" target="_blank" rel="noopener" aria-label="Visitar plendido.com.ar">
                         <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>plendido.com.ar</span></div>
                         <div class="browser-view"><img src="./img/proyectos/plendido.webp" alt="Sitio web de Plendido" width="1200" height="3000" loading="lazy"></div>
                     </a>
                     <div class="venture-info">
-                        <span class="venture-kicker">Marca propia · E-commerce</span>
+                        <span class="venture-kicker">E-commerce · Objetos de diseño</span>
                         <h3>Plendido</h3>
                         <p class="venture-slogan">“Diseño que se enciende.”</p>
-                        <p>Estudio de lámparas y objetos de diseño. Creé la marca de punta a punta: identidad visual, tienda online, fotografía de producto y contenido para redes.</p>
-                        <ul class="tags"><li>Branding</li><li>E-commerce</li><li>Fotografía de producto</li><li>Reels</li></ul>
-                        <div class="venture-boards">
-                            <img src="./img/proyectos/plendido-board-1.webp" alt="Lámina de marca de Plendido: paleta, materiales y estilo" width="1400" height="792" loading="lazy">
-                            <img src="./img/proyectos/plendido-board-2.webp" alt="Moodboard de Plendido" width="1400" height="792" loading="lazy">
-                        </div>
+                        <p>Estudio de lámparas y objetos de diseño. Desarrollo de marca integral: identidad visual, tienda online, fotografía de producto y contenido audiovisual.</p>
+                        <ul class="tags"><li>Branding</li><li>E-commerce</li><li>Fotografía</li><li>Reels</li></ul>
                         <a class="venture-link" href="https://plendido.com.ar" target="_blank" rel="noopener">Visitar plendido.com.ar <span aria-hidden="true">↗</span></a>
                     </div>
                 </article>
@@ -294,9 +287,9 @@
                         <div class="browser-view"><img src="./img/proyectos/dinerar.webp" alt="Sitio web de DinerAR" width="1200" height="1375" loading="lazy"></div>
                     </a>
                     <div class="venture-info">
-                        <span class="venture-kicker">Producto propio · Finanzas</span>
+                        <span class="venture-kicker">Finanzas · Herramientas web</span>
                         <h3>DinerAR</h3>
-                        <p>Una bitácora financiera que nació de una necesidad propia: centralizar inversiones de distintas plataformas, con cotizaciones en vivo y calculadoras de UVA, MEP e interés compuesto.</p>
+                        <p>Plataforma financiera interactiva: centralización de inversiones de múltiples plataformas con cotizaciones en vivo y calculadoras de UVA, MEP e interés compuesto.</p>
                         <ul class="tags"><li>Producto</li><li>UI/UX</li><li>Desarrollo web</li><li>Datos en vivo</li></ul>
                         <a class="venture-link" href="https://dinerar.vercel.app" target="_blank" rel="noopener">Visitar DinerAR <span aria-hidden="true">↗</span></a>
                     </div>
@@ -309,7 +302,7 @@
                         <div class="browser-view"><img src="./img/proyectos/reservate.webp" alt="Sitio web de Reservate" width="1200" height="3000" loading="lazy"></div>
                     </a>
                     <div class="venture-info">
-                        <span class="venture-kicker">SaaS propio · Clubes deportivos</span>
+                        <span class="venture-kicker">SaaS · Gestión deportiva</span>
                         <h3><img src="./img/proyectos/reservate-logo.webp" alt="" width="128" height="128"> Reservate</h3>
                         <p>Plataforma para clubes deportivos: reservas de canchas online, agenda ordenada, pagos y control de caja en un solo lugar.</p>
                         <ul class="tags"><li>SaaS</li><li>UI/UX</li><li>Producto</li><li>Desarrollo web</li></ul>
@@ -326,41 +319,64 @@
             </div>
 
             <div class="grid-2">
-                <div class="card spot timeline reveal" style="--i:0">
-                    <h3 class="card-title">Experiencia</h3>
-                    <ol class="tl" data-sp>
-                        <li class="tl-item">
-                            <span class="tl-dot"></span>
-                            <div class="tl-top">
-                                <h4>Nación Servicios</h4>
-                                <span class="date">2021 — hoy</span>
-                            </div>
-                            <p class="role">Diseñador multimedia</p>
-                            <ul class="tags"><li>Motion graphics</li><li>Redes sociales</li><li>Edición de video</li><li>Render 3D</li><li>Packaging</li></ul>
-                        </li>
-                        <li class="tl-item">
-                            <span class="tl-dot"></span>
-                            <div class="tl-top">
-                                <h4>EnPixeles Freelancer</h4>
-                                <span class="date">2020 — hoy</span>
-                            </div>
-                            <p class="role">Diseñador · Maquetador</p>
-                            <ul class="tags"><li>Motion graphics</li><li>Edición de video</li><li>E-commerce</li><li>Render 3D</li><li>Webs corporativas</li></ul>
-                        </li>
-                        <li class="tl-item">
-                            <span class="tl-dot"></span>
-                            <div class="tl-top">
-                                <h4>Omnigraphics Argentina</h4>
-                                <span class="date">2018 — 2021</span>
-                            </div>
-                            <p class="role">Diseñador · Administrativo</p>
-                            <ul class="tags"><li>Diseño 3D de producto</li><li>Motion graphics</li><li>Edición de video</li></ul>
-                        </li>
-                    </ol>
+                <div class="card spot timeline reveal exp-card" id="exp-card" style="--i:0">
+                    <div class="exp-card-head">
+                        <h3 class="card-title">Experiencia</h3>
+                        <span class="mono exp-status-badge" id="exp-badge">PRIVADO</span>
+                    </div>
+
+                    <!-- Bloque de resguardo cuando está plegada -->
+                    <div class="exp-locked-shield" id="exp-shield">
+                        <div class="exp-shield-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <p class="exp-shield-label">Información profesional bajo reserva</p>
+                        <span class="exp-shield-sub">Trayectoria en empresas y clientes disponible bajo solicitud</span>
+                        <button type="button" class="btn-exp-reveal" id="btn-reveal-exp" aria-expanded="false">
+                            <span>Desplegar bajo solicitud</span>
+                            <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Contenido desplegable -->
+                    <div class="exp-collapsible" id="exp-content" aria-hidden="true">
+                        <ol class="tl" data-sp>
+                            <li class="tl-item">
+                                <span class="tl-dot"></span>
+                                <div class="tl-top">
+                                    <h4>Nación Servicios</h4>
+                                    <span class="date">2021 — hoy</span>
+                                </div>
+                                <p class="role">Diseñador multimedia</p>
+                                <ul class="tags"><li>Motion graphics</li><li>Redes sociales</li><li>Edición de video</li><li>Render 3D</li><li>Packaging</li></ul>
+                            </li>
+                            <li class="tl-item">
+                                <span class="tl-dot"></span>
+                                <div class="tl-top">
+                                    <h4>EnPixeles Freelancer</h4>
+                                    <span class="date">2020 — hoy</span>
+                                </div>
+                                <p class="role">Diseñador · Maquetador</p>
+                                <ul class="tags"><li>Motion graphics</li><li>Edición de video</li><li>E-commerce</li><li>Render 3D</li><li>Webs corporativas</li></ul>
+                            </li>
+                            <li class="tl-item">
+                                <span class="tl-dot"></span>
+                                <div class="tl-top">
+                                    <h4>Omnigraphics Argentina</h4>
+                                    <span class="date">2018 — 2021</span>
+                                </div>
+                                <p class="role">Diseñador · Administrativo</p>
+                                <ul class="tags"><li>Diseño 3D de producto</li><li>Motion graphics</li><li>Edición de video</li></ul>
+                            </li>
+                        </ol>
+                        <button type="button" class="btn-exp-collapse" id="btn-collapse-exp">
+                            <span>Plegar y volver a proteger</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="card spot timeline reveal" style="--i:1">
-                    <h3 class="card-title">Educación</h3>
+                    <h3 class="card-title">Educación e Idiomas</h3>
                     <ol class="edu">
                         <li><h4>Diseño multimedial</h4><span>Escuela Da Vinci</span></li>
                         <li><h4>Diseño 3D en Blender</h4><span>Coderhouse</span></li>
@@ -368,6 +384,7 @@
                         <li><h4>Diseñador UX/UI</h4><span>Codo a Codo</span></li>
                         <li><h4>Marketing digital</h4><span>Google Activate</span></li>
                         <li><h4>Técnico en desarrollo informático</h4><span>IAC</span></li>
+                        <li><h4>Inglés</h4><span>Nivel básico</span></li>
                     </ol>
                 </div>
             </div>
@@ -383,7 +400,18 @@
                 <div class="card spot tilt sw reveal" style="--i:1; --c:#ea77ff"><span class="sw-name">Pr</span><p>Premiere</p></div>
                 <div class="card spot tilt sw reveal" style="--i:2; --c:#ff9a00"><span class="sw-name">Ai</span><p>Illustrator</p></div>
                 <div class="card spot tilt sw reveal" style="--i:3; --c:#31a8ff"><span class="sw-name">Ps</span><p>Photoshop</p></div>
-                <div class="card spot tilt sw reveal" style="--i:4; --c:#a259ff"><span class="sw-name sw-logo"><img src="./img/logos/figma.svg" alt="" width="38" height="57"></span><p>Figma</p></div>
+                <div class="card spot tilt sw sw-flippable reveal" id="sw-figma-xd" style="--i:4; --c:#a259ff">
+                    <div class="sw-flipper">
+                        <div class="sw-face sw-front">
+                            <span class="sw-name sw-logo"><img src="./img/logos/figma.svg" alt="Figma" width="38" height="57"></span>
+                            <p>Figma</p>
+                        </div>
+                        <div class="sw-face sw-back">
+                            <span class="sw-name sw-xd">Xd</span>
+                            <p>Adobe XD</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="card spot tilt sw reveal" style="--i:5; --c:#e87d0d"><span class="sw-name sw-logo"><img src="./img/logos/blender.svg" alt="" width="181" height="148"></span><p>Blender</p></div>
             </div>
             <div class="card spot ai-card reveal">
@@ -391,7 +419,7 @@
                     <span class="ai-icon" aria-hidden="true">✦</span>
                     <div>
                         <h3>IA en mi flujo de trabajo</h3>
-                        <p>Uso herramientas de IA generativa para explorar ideas, generar recursos y acelerar la producción, sin perder el criterio de diseño.</p>
+                        <p>Uso herramientas de IA generativa para explorar ideas, generar recursos y acelerar la producción.</p>
                     </div>
                 </div>
                 <ul class="tags ai-tags"><li><img src="./img/logos/ai-claude.svg" alt="" width="14" height="14">Claude</li><li><img src="./img/logos/ai-chatgpt.svg" alt="" width="14" height="14">ChatGPT</li><li><img src="./img/logos/ai-gemini.svg" alt="" width="14" height="14">Gemini</li><li><img src="./img/logos/ai-veo.svg" alt="" width="14" height="14">Veo</li><li><img src="./img/logos/ai-magnific.svg" alt="" width="14" height="14">Magnific Spaces</li></ul>
@@ -411,10 +439,6 @@
                     <div class="contact-item">
                         <span class="label">Portafolio</span>
                         <a href="https://behance.net/matiasprestamo" target="_blank" rel="noopener" class="value">behance.net/matiasprestamo ↗</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="label">Idioma</span>
-                        <span class="value">Inglés · Básico</span>
                     </div>
                 </div>
             </div>
