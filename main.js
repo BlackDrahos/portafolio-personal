@@ -704,27 +704,17 @@ initTypewriterTitle();
     }
 }
 
-// ============ Despliegue de Experiencia laboral protegida ============
+// ============ Despliegue discreto de Experiencia dentro de Educación ============
 {
-    const expCard = document.getElementById('exp-card');
-    const btnReveal = document.getElementById('btn-reveal-exp');
-    const btnCollapse = document.getElementById('btn-collapse-exp');
-    const expBadge = document.getElementById('exp-badge');
-    const expContent = document.getElementById('exp-content');
+    const btnToggle = document.getElementById('btn-toggle-exp');
+    const drawer = document.getElementById('exp-drawer');
 
-    if (expCard && btnReveal && btnCollapse) {
-        btnReveal.addEventListener('click', () => {
-            expCard.classList.add('is-revealed');
-            btnReveal.setAttribute('aria-expanded', 'true');
-            if (expContent) expContent.setAttribute('aria-hidden', 'false');
-            if (expBadge) expBadge.textContent = 'ACCESO ACTIVO';
-        });
-
-        btnCollapse.addEventListener('click', () => {
-            expCard.classList.remove('is-revealed');
-            btnReveal.setAttribute('aria-expanded', 'false');
-            if (expContent) expContent.setAttribute('aria-hidden', 'true');
-            if (expBadge) expBadge.textContent = 'PRIVADO';
+    if (btnToggle && drawer) {
+        btnToggle.addEventListener('click', () => {
+            const isOpen = drawer.classList.toggle('is-open');
+            btnToggle.classList.toggle('is-open', isOpen);
+            btnToggle.setAttribute('aria-expanded', String(isOpen));
+            drawer.setAttribute('aria-hidden', String(!isOpen));
         });
     }
 }

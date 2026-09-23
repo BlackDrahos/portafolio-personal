@@ -33,10 +33,9 @@
             <a href="#experience">Experiencia</a>
             <a href="#software">Software</a>
             <a href="#contact">Contacto</a>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema claro / oscuro">
-                <span class="theme-icon theme-icon-sun" aria-hidden="true">☀️</span>
-                <span class="theme-icon theme-icon-moon" aria-hidden="true">🌙</span>
-                <span class="theme-text">Tema</span>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema claro / oscuro" title="Cambiar tema">
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             </button>
         </div>
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -317,34 +316,38 @@
             </div>
         </section>
 
-        <!-- ============ EXPERIENCIA ============ -->
+        <!-- ============ EDUCACIÓN E IDIOMAS (con experiencia desplegable discreta) ============ -->
         <section id="experience" class="section">
             <div class="section-head" data-sp>
-                <h2 class="section-title split">Experiencia y <em class="serif">educación</em></h2>
+                <h2 class="section-title split">Educación y <em class="serif">formación</em></h2>
             </div>
 
-            <div class="grid-2">
-                <div class="card spot timeline reveal exp-card" id="exp-card" style="--i:0">
-                    <div class="exp-card-head">
-                        <h3 class="card-title">Experiencia</h3>
-                        <span class="mono exp-status-badge" id="exp-badge">PRIVADO</span>
-                    </div>
-
-                    <!-- Bloque de resguardo cuando está plegada -->
-                    <div class="exp-locked-shield" id="exp-shield">
-                        <div class="exp-shield-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        </div>
-                        <p class="exp-shield-label">Información profesional bajo reserva</p>
-                        <span class="exp-shield-sub">Trayectoria en empresas y clientes disponible bajo solicitud</span>
-                        <button type="button" class="btn-exp-reveal" id="btn-reveal-exp" aria-expanded="false">
-                            <span>Desplegar bajo solicitud</span>
-                            <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="edu-wrap">
+                <div class="card spot timeline reveal edu-card" id="edu-card" style="--i:0">
+                    <div class="edu-card-head">
+                        <h3 class="card-title">Educación e Idiomas</h3>
+                        <button type="button" class="btn-exp-subtle" id="btn-toggle-exp" aria-expanded="false" title="Desplegar trayectoria">
+                            <span class="exp-subtle-dot">✦</span>
+                            <span>Experiencia</span>
+                            <svg class="exp-subtle-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
                         </button>
                     </div>
 
-                    <!-- Contenido desplegable -->
-                    <div class="exp-collapsible" id="exp-content" aria-hidden="true">
+                    <ol class="edu">
+                        <li><h4>Diseño multimedial</h4><span>Escuela Da Vinci</span></li>
+                        <li><h4>Diseño 3D en Blender</h4><span>Coderhouse</span></li>
+                        <li><h4>Creación de contenido con AI</h4><span>Coderhouse</span></li>
+                        <li><h4>Diseñador UX/UI</h4><span>Codo a Codo</span></li>
+                        <li><h4>Marketing digital</h4><span>Google Activate</span></li>
+                        <li><h4>Técnico en desarrollo informático</h4><span>IAC</span></li>
+                        <li><h4>Inglés</h4><span>Nivel básico</span></li>
+                    </ol>
+
+                    <!-- Cajón discreto desplegable de experiencia -->
+                    <div class="exp-drawer" id="exp-drawer" aria-hidden="true">
+                        <div class="exp-drawer-divider">
+                            <span class="mono">TRAYECTORIA LABORAL</span>
+                        </div>
                         <ol class="tl" data-sp>
                             <li class="tl-item">
                                 <span class="tl-dot"></span>
@@ -374,23 +377,7 @@
                                 <ul class="tags"><li>Diseño 3D de producto</li><li>Motion graphics</li><li>Edición de video</li></ul>
                             </li>
                         </ol>
-                        <button type="button" class="btn-exp-collapse" id="btn-collapse-exp">
-                            <span>Plegar y volver a proteger</span>
-                        </button>
                     </div>
-                </div>
-
-                <div class="card spot timeline reveal" style="--i:1">
-                    <h3 class="card-title">Educación e Idiomas</h3>
-                    <ol class="edu">
-                        <li><h4>Diseño multimedial</h4><span>Escuela Da Vinci</span></li>
-                        <li><h4>Diseño 3D en Blender</h4><span>Coderhouse</span></li>
-                        <li><h4>Creación de contenido con AI</h4><span>Coderhouse</span></li>
-                        <li><h4>Diseñador UX/UI</h4><span>Codo a Codo</span></li>
-                        <li><h4>Marketing digital</h4><span>Google Activate</span></li>
-                        <li><h4>Técnico en desarrollo informático</h4><span>IAC</span></li>
-                        <li><h4>Inglés</h4><span>Nivel básico</span></li>
-                    </ol>
                 </div>
             </div>
         </section>
