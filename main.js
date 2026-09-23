@@ -589,7 +589,13 @@ document.querySelectorAll('.feature').forEach(feature => {
         const img = frames[i];
         if (!img || !img.complete || i === shown) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        // Escalar la imagen con margen del 8% en X para que el brochure
+        // desplegado no quede cortado en los bordes del render original
+        const margin = canvas.width * 0.08;
+        const drawW = canvas.width - margin * 2;
+        const drawH = (drawW / 820) * 1000;
+        const drawY = (canvas.height - drawH) / 2;
+        ctx.drawImage(img, margin, drawY, drawW, drawH);
         shown = i;
     };
     const load = () => {
